@@ -1,0 +1,21 @@
+.message-row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin: 2px 0;
+  .user {
+    display: flex;
+    width: 50px;
+    margin: 0 2px;
+  }
+  .message {
+    display: flex;
+    width: 200px;
+    margin: 0 2px;
+  }
+
+  .currentUser {
+    font-weight: bold;
+    color: grey;
+  }
+}

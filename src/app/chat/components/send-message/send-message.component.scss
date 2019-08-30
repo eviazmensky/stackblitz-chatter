@@ -1,0 +1,11 @@
+#message-box {
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+
+  textarea {
+    min-height: 200px;
+    width: 100%;
+    resize: vertical
+  }
+}

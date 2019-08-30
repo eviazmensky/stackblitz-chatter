@@ -1,0 +1,12 @@
+<div class="quarter">
+  {{ user.userName }}
+</div>
+<div class="quarter">
+  {{ user.active || 'false' }}
+</div>
+<div class="quarter">
+  {{ user.id }}
+</div>
+<div class="quarter">
+  <input type="submit" value="Select" (click)="setAsActiveUser()" [disabled]="user.active" />
+</div>

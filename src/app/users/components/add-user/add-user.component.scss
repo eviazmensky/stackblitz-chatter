@@ -1,0 +1,12 @@
+#addUser {
+  display: flex;
+  flex: 1;
+  input {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+  }
+  input[type='submit'] {
+    border-radius: 0;
+  }
+}

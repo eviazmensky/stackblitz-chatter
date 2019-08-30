@@ -1,0 +1,8 @@
+<nav>
+  <a [routerLinkActive]="'active-link'" [routerLink]="''" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a [routerLinkActive]="'active-link'" [routerLink]="'users'" [routerLinkActiveOptions]="{ exact: true }">Users</a>
+  <a [routerLinkActive]="'active-link'" [routerLink]="'simple-chat'" [routerLinkActiveOptions]="{ exact: true }">
+    Chat
+  </a>
+  <div>Current User: {{ (currentUser | async).userName }}</div>
+</nav>

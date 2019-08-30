@@ -1,0 +1,9 @@
+<div class="users-list header">
+  <div class="quarter">User Name</div>
+  <div class="quarter">Active</div>
+  <div class="quarter">ID</div>
+  <div class="quarter">Select</div>
+</div>
+<div *ngFor="let user of users$ | async">
+  <app-user-row [user]="user"></app-user-row>
+</div>

@@ -1,0 +1,6 @@
+<section id="simple-chat">
+  <section id="chatWindow">
+    <app-read-message *ngFor="let message of chats$ | async" [message]="message"></app-read-message>
+  </section>
+  <app-send-message (messageChange)="onMessageChange($event)" [canSend]="canSendMessage"> </app-send-message>
+</section>

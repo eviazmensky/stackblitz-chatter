@@ -1,0 +1,18 @@
+nav {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: stretch;
+  div,
+  a {
+    flex: 1;
+    text-decoration: none;
+    &:visited {
+      color: black;
+    }
+  }
+  .active-link {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}

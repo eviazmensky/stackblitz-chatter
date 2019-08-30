@@ -1,0 +1,11 @@
+<section id="addUser">
+  <input
+    [(ngModel)]="newUserName"
+    (keydown.enter)="addUser()"
+    (ngModelChange)="handleChange()"
+    (blur)="handleChange()"
+    placeholder="Enter New Username"
+  />
+  <input type="submit" class="submit" value="Add User" (click)="addUser()" [disabled]="userNameValid$ | async" />
+  <span *ngIf="(userNameValid$ | async) && !!newUserName">Username is not available</span>
+</section>
