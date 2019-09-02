@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StoreService {
-
-  constructor() { }
+  // TODO: move store functions (select, mapping actions, etc) to this file.
+  constructor() {}
 }
