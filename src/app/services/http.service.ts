@@ -7,8 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   get<T>(url: string): Observable<T> {
     const requestUrl = `${Global.baseApiUrl}${url}`;
@@ -19,7 +18,6 @@ export class HttpService {
     const requestUrl = `${Global.baseApiUrl}${url}`;
     const headers = new HttpHeaders();
     headers.append('content-type', 'application/json');
-    console.log(headers);
-    return this.http.post<T>(requestUrl, payload, {headers});
+    return this.http.post<T>(requestUrl, payload, { headers });
   }
 }

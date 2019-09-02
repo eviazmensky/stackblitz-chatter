@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NavComponent } from './nav.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { UserService } from 'app/services/user.service';
+import { userServiceMock } from 'app/services/mocks/userServiceMock';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -8,9 +10,10 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
-    })
-    .compileComponents();
+      declarations: [NavComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provide: UserService, useClass: userServiceMock }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

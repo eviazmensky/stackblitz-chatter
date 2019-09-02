@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListUsersComponent } from './list-users.component';
+import { UserService } from 'app/services/user.service';
+import { userServiceMock } from 'app/services/mocks/userServiceMock';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListUsersComponent', () => {
   let component: ListUsersComponent;
@@ -8,9 +11,10 @@ describe('ListUsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListUsersComponent ]
-    })
-    .compileComponents();
+      declarations: [ListUsersComponent],
+      providers: [{ provide: UserService, useClass: userServiceMock }],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

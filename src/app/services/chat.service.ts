@@ -18,12 +18,6 @@ export class ChatService {
 
   constructor(private store: Store, private streamService: StreamService, private httpService: HttpService) {
     this.getChatStream().subscribe((message: any) => this.addMessageToStore(message));
-    httpService.get('loadAll').subscribe((data: ChatHistory) => {
-      console.log(data);
-      data.chatHistory.forEach(msg => {
-        this.addMessageToStore(msg);
-      });
-    });
   }
 
   getChatStream(): Observable<IChatState> {
@@ -43,6 +37,11 @@ export class ChatService {
   }
 
   getAllMessages() {
-    console.log(this.store.snapshot());
+    this.httpService.get('loadAll').subscribe((data: ChatHistory) => {
+      console.log(data);
+      data.chatHistory.forEach(msg => {
+        this.addMessageToStore(msg);
+      });
+    });
   }
 }

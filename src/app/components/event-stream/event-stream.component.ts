@@ -6,7 +6,7 @@ import { map, takeUntil, tap, delay, filter, distinctUntilChanged } from 'rxjs/o
 import { IUserState } from 'app/models/user-state';
 import { IChatState } from 'app/models/chat-state';
 import { StreamService } from 'app/services/stream.service';
-import { Router, Route, RouterEvent } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-stream',
@@ -27,7 +27,7 @@ export class EventStreamComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activeUsers = this.calcActiveUsers(this.userService.getCurrentUsers());
-
+    // if following code merges three streams into a single output. If a 4th is added, it should be moved into a service
     merge(
       this.userService.streamUsersUpdates().pipe(
         filter(() => this.router.url !== '/users'),
@@ -38,15 +38,11 @@ export class EventStreamComponent implements OnInit, OnDestroy {
         map((users: IUserState[]) => this.calcActiveUsers(users)),
         distinctUntilChanged(),
         filter((activeCount: number) => activeCount !== this.activeUsers),
-        map((activeCount: number) => {
-          const status = activeCount > this.activeUsers ? 'active' : 'inactive';
-          this.activeUsers = activeCount;
-          return `A user has become ${status}`;
-        })
+        map((activeCount: number) => this.userChangeStatusMessage(activeCount))
       ),
       this.chatService.getChatStream().pipe(
         filter(() => this.router.url !== '/simple-chat'),
-        map(message => `A new message just posted (${(message as IChatState).sender})`)
+        map(message => `${(message as IChatState).sender} just posted a new message `)
       )
     )
       .pipe(
@@ -66,5 +62,11 @@ export class EventStreamComponent implements OnInit, OnDestroy {
 
   private calcActiveUsers(users: IUserState[]): number {
     return users.filter(user => user.active).length;
+  }
+
+  private userChangeStatusMessage(count: number): string {
+    const status = count > this.activeUsers ? 'active' : 'inactive';
+    this.activeUsers = count;
+    return `A user has become ${status}`;
   }
 }

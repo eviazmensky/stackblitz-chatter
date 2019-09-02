@@ -15,7 +15,11 @@ export class ReadMessageComponent implements OnInit {
 
   ngOnInit() {
     this.userService.currentUser().subscribe((user: IUserState) => {
-      this.currentUserMessage = user.userName === this.message.sender;
+      this.currentUserMessage = this.setCurrentUser(user.userName);
     });
+  }
+
+  private setCurrentUser(user: string): boolean {
+    return user === this.message.sender;
   }
 }

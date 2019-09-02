@@ -1,5 +1,5 @@
 <div id="message-box">
-  <textarea [(ngModel)]="messageText" (keyup.enter)="sendMessage()">
+  <textarea [(ngModel)]="messageText" (keyup.enter)="!canSend && sendMessage()">
 
   </textarea>
   <input type="submit"

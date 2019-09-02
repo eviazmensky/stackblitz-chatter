@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'app/services/http.service';
 import { StreamService } from 'app/services/stream.service';
 import { catchError } from 'rxjs/operators';
-import { empty } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { ChatService } from 'app/services/chat.service';
 import { UserService } from './services/user.service';
 
@@ -31,26 +31,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    // health check
     this.httpService
       .get('')
       .pipe(
         catchError(() => {
           console.log('backend is down');
-          return empty();
+          return EMPTY;
         })
       )
       .subscribe(data => console.log('backend is up', data));
 
     this.streamService.getMessages('connection').subscribe(data => console.log(data));
-
+    // calls to get historical data here when the app loads instead of when the module loads. ensures the call only happens once
     this.chatService.getAllMessages();
     this.userService.getAllUsers();
-  }
-
-  sendMessage() {
-    this.chatService.addMessage({
-      sender: this.user,
-      message: this.appText
-    });
   }
 }
