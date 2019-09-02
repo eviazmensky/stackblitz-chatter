@@ -5,7 +5,6 @@ import { chatServiceMock } from 'app/services/mocks/chatServiceMock';
 import { UserService } from 'app/services/user.service';
 import { userServiceMock } from 'app/services/mocks/userServiceMock';
 import { StreamService } from 'app/services/stream.service';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IUserState } from 'app/models/user-state';
 

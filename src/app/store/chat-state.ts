@@ -1,8 +1,8 @@
-import { State , Action, StateContext, NgxsOnInit} from '@ngxs/store';
-import {IChatState, ChatStateModel} from 'app/models/chat-state';
+import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
+import { IChatState, ChatStateModel } from 'app/models/chat-state';
 
-export class AddMessage {
-  static readonly type = '[chat] AddMessage';
+export class addChatMessage {
+  static readonly type = '[chat] addChatMessage';
   constructor(public message: IChatState) {}
 }
 
@@ -12,17 +12,13 @@ export class AddMessage {
     messages: []
   }
 })
-
 export class ChatState implements NgxsOnInit {
-  @Action(AddMessage)
-  AddMessage(ctx: StateContext<ChatStateModel>, action: AddMessage) {
+  @Action(addChatMessage)
+  addChatMessage(ctx: StateContext<ChatStateModel>, action: addChatMessage) {
     const state = ctx.getState();
     ctx.setState({
       ...state,
-      messages: [
-        ...state.messages,
-        action.message
-      ]
+      messages: [...state.messages, action.message]
     });
   }
 
@@ -31,5 +27,3 @@ export class ChatState implements NgxsOnInit {
     ctx.dispatch([]);
   }
 }
-
-

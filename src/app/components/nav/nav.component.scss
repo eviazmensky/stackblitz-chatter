@@ -3,6 +3,9 @@ nav {
   flex: 1;
   flex-direction: row;
   align-items: stretch;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-bottom: 1px solid #999;
   div,
   a {
     flex: 1;
@@ -13,6 +16,6 @@ nav {
   }
   .active-link {
     font-weight: bold;
-    text-decoration: underline;
+    color: black;
   }
 }

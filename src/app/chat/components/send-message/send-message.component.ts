@@ -15,9 +15,9 @@ export class SendMessageComponent implements OnInit {
   ngOnInit() {}
 
   sendMessage() {
-    if ( this.canSend ) {
-    this.messageChange.emit(this.messageText);
-    this.messageText = '';
+    if (this.canSend && !!this.messageText) {
+      this.messageChange.emit(this.messageText);
+      this.messageText = '';
     }
   }
 }

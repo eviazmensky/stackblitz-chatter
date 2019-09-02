@@ -5,7 +5,8 @@
 
   textarea {
     min-height: 200px;
+    overflow-y: auto;
     width: 100%;
-    resize: vertical
+    resize: none;
   }
 }

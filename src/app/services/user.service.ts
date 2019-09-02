@@ -59,7 +59,6 @@ export class UserService {
   }
 
   addUser(userName: string): Observable<any> {
-    console.log(`serivice ${userName}`);
     return this.httpService.post('addUser', { UserName: userName });
   }
 

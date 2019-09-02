@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { StreamService } from './stream.service';
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IChatState } from '../models/chat-state';
-import { AddMessage } from '../store/chat-state';
+import { addChatMessage } from '../store/chat-state';
 import { HttpService } from './http.service';
 
 interface ChatHistory {
@@ -25,10 +25,10 @@ export class ChatService {
   }
 
   private addMessageToStore(message: IChatState) {
-    this.store.dispatch(new AddMessage(message));
+    this.store.dispatch(new addChatMessage(message));
   }
 
-  addMessage(message: IChatState) {
+  addChatMessage(message: IChatState) {
     this.streamService.sendMessage('message', message);
   }
 
@@ -38,7 +38,6 @@ export class ChatService {
 
   getAllMessages() {
     this.httpService.get('loadAll').subscribe((data: ChatHistory) => {
-      console.log(data);
       data.chatHistory.forEach(msg => {
         this.addMessageToStore(msg);
       });

@@ -1,9 +1,4 @@
 <div id="message-box">
-  <textarea [(ngModel)]="messageText" (keyup.enter)="!canSend && sendMessage()">
-
-  </textarea>
-  <input type="submit"
-    value="Send"
-    (click)="sendMessage()"
-    [disabled]="!canSend"/>
+  <textarea [(ngModel)]="messageText" (keyup.enter)="canSend && sendMessage()"> </textarea>
+  <input type="submit" value="Send" (click)="sendMessage()" [disabled]="!canSend" />
 </div>

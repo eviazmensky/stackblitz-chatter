@@ -32,9 +32,9 @@ describe('ChatComponent', () => {
   });
 
   it('should send a message', () => {
-    spyOn(component['chatService'], 'addMessage');
+    spyOn(component['chatService'], 'addChatMessage');
     component.onMessageChange('test');
-    expect(component['chatService'].addMessage).toHaveBeenCalled();
+    expect(component['chatService'].addChatMessage).toHaveBeenCalled();
   });
 
   it('should be able to send a message', () => {
