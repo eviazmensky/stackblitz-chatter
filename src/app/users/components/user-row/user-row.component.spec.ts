@@ -31,4 +31,10 @@ describe('UserRowComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set an active user', () => {
+    spyOn(component['userService'], 'setActiveUser');
+    component.setAsActiveUser();
+    expect(component['userService'].setActiveUser).toHaveBeenCalled();
+  });
 });

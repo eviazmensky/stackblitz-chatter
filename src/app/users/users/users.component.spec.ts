@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UsersComponent } from './users.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserService } from 'app/services/user.service';
@@ -25,5 +24,11 @@ describe('UsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get the latest users', () => {
+    spyOn(component['userService'], 'getLatestUsers');
+    component.ngOnInit();
+    expect(component['userService'].getLatestUsers).toHaveBeenCalled();
   });
 });

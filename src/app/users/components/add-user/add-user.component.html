@@ -7,5 +7,5 @@
     placeholder="Enter New Username"
   />
   <input type="submit" class="submit" value="Add User" (click)="addUser()" [disabled]="userNameValid$ | async" />
-  <span *ngIf="(userNameValid$ | async) && !!newUserName">Username is not available</span>
+  <span *ngIf="(userNameValid$ | async)">Username is not available</span>
 </section>

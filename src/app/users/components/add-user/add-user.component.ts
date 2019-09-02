@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { debounceTime, flatMap, takeUntil, distinctUntilChanged, tap, mapTo, map } from 'rxjs/operators';
+import { debounceTime, flatMap, takeUntil, distinctUntilChanged, tap, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { UserService } from 'app/services/user.service';
 
@@ -16,7 +16,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     debounceTime(150),
     flatMap(userName => this.userService.verifyUserName(userName)),
-    map(valid => !valid)
+    map(valid => !valid && !!this.newUserName)
   );
 
   constructor(private userService: UserService) {}
@@ -31,7 +31,9 @@ export class AddUserComponent implements OnInit, OnDestroy {
     if (this.newUserName) {
       this.userService
         .addUser(this.newUserName)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(
+          takeUntil(this.destroy$)
+        )
         .subscribe(() => {
           this.newUserName = '';
         });

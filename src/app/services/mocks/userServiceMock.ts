@@ -1,5 +1,6 @@
 import { IUserState } from 'app/models/user-state';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { subscribeOn } from 'rxjs/operators';
 
 export class userServiceMock {
   getAllUsers(): void {}
@@ -24,5 +25,15 @@ export class userServiceMock {
     return of({} as IUserState);
   }
 
+  addUser(username: string): Observable<any> {
+    return of(username);
+  }
+
   getLatestUsers(): void {}
+
+  setActiveUser(): void {}
+
+  listAllUsers(): Observable<IUserState[]> {
+    return of([] as IUserState[]);
+  }
 }

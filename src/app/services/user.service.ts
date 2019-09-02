@@ -11,7 +11,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  @Select(state => state.user.users) users$: Observable<IUserState[]>;
+  @Select(state => state.user.users) private users$: Observable<IUserState[]>;
   @Select(state => state.user.currentUser) currentUser$: Observable<IUserState>;
   @Select(state => state.user.users.filter((user: IUserState) => user.active)) activeUsers$: Observable<IUserState[]>;
 
@@ -59,6 +59,7 @@ export class UserService {
   }
 
   addUser(userName: string): Observable<any> {
+    console.log(`serivice ${userName}`);
     return this.httpService.post('addUser', { UserName: userName });
   }
 
