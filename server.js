@@ -12,7 +12,6 @@ var eventEmitter = new events();
 
 app.use(cors());
 app.use(function(req, res, next) {
-  console.log('middleware');
   req.testing = 'testing';
   return next();
 });
@@ -50,7 +49,6 @@ app.post('/addUser', (req, res) => {
     res.statusCode = 202;
     res.send();
     eventEmitter.emit('userAdded', newUser);
-    console.log('emit sent');
   } else {
     res.statusCode = 409;
     res.send();
@@ -60,12 +58,10 @@ app.post('/addUser', (req, res) => {
 app.post('/activeUser', (req, res) => {
   setActive(req.body.userId);
   eventEmitter.emit('activeUserSet');
-  console.log('emit sent');
   res.send({ message: 'success' });
 });
 
 eventEmitter.on('userAdded', user => {
-  console.log('userADded emitted');
   io.emit('userAdded', user);
 });
 
@@ -98,7 +94,6 @@ io.on('connection', socket => {
         }
       });
       eventEmitter.emit('activeUserSet');
-      console.log('emit sent');
     }
   });
 });
