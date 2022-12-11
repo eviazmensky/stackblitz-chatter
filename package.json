@@ -23,7 +23,7 @@
     "@angular/router": "~8.2.0",
     "@ngxs/store": "^3.5.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-ws": "^4.0.0",
     "nodemon": "^1.19.1",
     "rx": "^4.1.0",
